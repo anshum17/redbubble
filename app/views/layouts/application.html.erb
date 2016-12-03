@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></style>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -16,27 +17,46 @@
   	<header>
       <div class="container">
         <div class="home">
+          <i class="fa fa-home"></i>
           <a href="/" >HOME</a>
         </div>
 
-        <div class="dropdown" style="position:relative">
+        <!-- <div class="dropdown" style="position:relative">
           <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">MAKE <span class="caret"></span></a>
           <ul class="dropdown-menu multi-level">
             <% @data['makes'].keys().each do |key| %>        
             <li class="dropdown-submenu">
-                <a href="/make?q=<%= key %>" class="dropdown-toggle"><%= key %></a>
+                <a href="/make?q=<%= key %>" class="dropdown-toggle <%= (key) ? '' : 'hidden' %>"><%= key %></a>
                 <ul class="dropdown-menu">
                   <% @data['makes'][key]['models'].each do |model| %>
-                    <li><a href="/model?q=<%= model %>"><%= model %></a></li> 
+                    <li>
+                      <a href="/model?q=<%= model %>" class="<%= (model) ? '' : 'hidden' %>"><%= model %></a>
+                    </li> 
                     <% end %>                               
                 </ul>
             </li>
             <% end %>
           </ul>
-        </div>
+        </div> -->
       </div>  		
   	</header>
     <div class="container">
+
+    <div class="navigation">
+      <% @data['makes'].keys().each do |key| %>        
+            <div class="list <%= (key) ? '' : 'hidden' %>">
+                <a href="/make?q=<%= key %>" class="camera-make"><%= key %></a>
+                <ul class="list-dropdown">
+                  <% @data['makes'][key]['models'].each do |model| %>
+                    <li>
+                      <a href="/model?q=<%= model %>" class="<%= (model) ? '' : 'hidden' %>"><%= model %></a>
+                    </li> 
+                    <% end %>                               
+                </ul>
+            </div>
+        <% end%>
+    </div>
+      
       <%= yield %>
       
     </div>

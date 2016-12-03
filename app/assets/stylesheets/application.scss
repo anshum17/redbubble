@@ -18,6 +18,28 @@
  .container {
  	max-width: 1080px;
  	margin: auto;
+
+ 	h1 {
+		font-size: 20px;
+    	text-transform: uppercase;
+    	position: relative;
+    	font-weight: 300px;
+    	color: black;
+    	margin-bottom: 40px;
+
+    	&:before{
+    		content: '';
+		    position: absolute;
+		    height: 4px;
+		    width: 40px;
+		    bottom: -34px;
+		    background-color: #cd6774;
+		    margin-bottom: 20px;
+
+    	}
+
+	}
+
  }
 
 header {
@@ -28,16 +50,25 @@ header {
     padding-left: 20px;
 }
 
-.home, .dropdown {
+
+.home {
+	.fa-home{
+		font-weight: 200;
+		font-size: 14px;
+	}
+
+	a {
+		color: #f0f0f0;
+	}
+	font-size: 14px
+}
+
+.home{
 	display: inline-block;
 	margin: 0 10px;
 }
 
-
-
 .index-page {
-
-
 	.image-container {
 		display: inline-block;
 	}
@@ -46,27 +77,94 @@ header {
 	    border: 10px solid #f0f0f0;
 	    border-radius: 4px;
 	}
-
 	a {
 	    padding: 10px;
 	    color: white;
 	    font-size: 12px;
 	    height: 50px;
 	    line-height: 50px;
-	    width: 145px;
+	    width: auto;
+	    max-width: 100%;
 	    text-align: center;
-
-
 	    &.make {
-	    	background-color: #f00088;
-
+	    	background-color: black;
 	    }
 
 	    &.model {
-	    	background-color: #f08677;
+	    	background-color: crimson;
 
 	    }
 	}
+}
+	
+.navigation {
+	margin: 40px 0;
+}
 
 
+.list {
+    font-size: 12px;
+    margin: 0 10px 10px 0;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 10px 0 10px;
+    display: inline-block;
+    position: relative;
+    color: crimson;
+
+    .list-dropdown{
+    	display: none;
+    	position: absolute;
+	    list-style: none;
+	    padding: 5px;
+	    width: 100%;
+	    min-width: 120px;
+	    left: 0;
+	    top: 24px;
+	    font-size: 10px;
+	    font-weight: 200px;
+	    margin-top: 1px;
+	    background-color: white;
+	    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+	    z-index: 1;
+
+	    li {
+	    	display: inline-block;
+		    padding: 5px 10px;
+		    border-bottom: 1px solid rgba(0,0,0,.1);
+		    margin-bottom: 3px;
+
+		    &:last-child {
+		    	border: none;
+		    	margin-bottom: 0
+		    }	
+	    }
+    }
+
+    &:hover {
+    	>a {
+    		color: #dd5277;
+    		transition: all 300ms ease-in;
+    		font-weight: bold;
+    	}
+    	.list-dropdown {
+    		display: block;
+
+    	}
+    }
+
+    a {
+    	color: black;
+    }
+
+
+}
+
+
+img {
+    transition: -webkit-transform 0.25s ease;
+}
+
+img:hover {
+    -webkit-transform: scale(1.1);
 }

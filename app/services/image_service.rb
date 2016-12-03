@@ -16,14 +16,13 @@ class ImageService
 		makes = {}
 		images = []
 		@data.each do |obj|
-			@Work = obj
+			@image = obj
 			image_id = obj['id']
 			model = _model
 			make = _make
 			images = (model == id) ? images + [image_object] : images
 			makes[make] = makes[make] ?  { 'models' => makes[make]['models'] | [model]} : { 'models' => [model] }
 			# makes[make] = makes[make] ?  { 'image_ids' => makes[make]['image_ids'] | [image_id], 'models' => makes[make]['models'] | [model]} : { 'image_ids' => [image_id], 'models' => [model]}
-			# models[model] = { 'image_ids' => models[model] ? models[model]['image_ids'] | [id] : [id], 'make' => make}
 		end
 		{
 			'makes' 				=> makes,
@@ -36,7 +35,7 @@ class ImageService
 		makes = {}
 		images = []
 		@data.each do |obj|
-			@Work = obj
+			@image = obj
 			image_id = obj['id']
 			model = _model
 			make = _make
@@ -50,24 +49,22 @@ class ImageService
 		}
 	end
 
-	# def works_hash(arr)
-	# 	works = {}
-	# 	arr.each do |work|
-	# 		id = work['id']
-	# 		model = _model(work)
-	# 		make = _make(work)
-	# 		works[id] = work
-	# 	end
-	# 	works
-	# end
+	def images_array
+		images = []
+		@data.each do |image|
+			@image = image
+			images += [image_object]
+		end
+		images
+	end
 
 	def to_hash(arr)
 		images = []
 		models = {}
 		makes = {}
-		arr.each do |work|
-			@Work = work
-			id = work['id']
+		arr.each do |image|
+			@image = image
+			id = image['id']
 			model = _model
 			make = _make
 			images = images + [image_object]
@@ -84,31 +81,31 @@ class ImageService
 private
 
 	def _model
-		@Work['exif']['model'] || ""
+		(@image['exif']['model'] && @image['exif']['model'].upcase) || nil
 	end
 
 	def _make
-		@Work['exif']['make'] || ""
+		(@image['exif']['make'] && @image['exif']['make'].upcase) || nil
 	end
 
 	def small_url
-		@Work['urls']['url'][0]['link'] || ""
+		@image['urls']['url'][0]['link'] || ""
 	end
 
 	def medium_url
-		@Work['urls']['url'][1]['link'] || ""
+		@image['urls']['url'][1]['link'] || ""
 	end
 
 	def large_url
-		@Work['urls']['url'][2]['link'] || ""
+		@image['urls']['url'][2]['link'] || ""
 	end
 
 	def filename
-		@Work['filename'] || ""
+		@image['filename'] || ""
 	end
 
 	def id
-		@Work['id'] || ""
+		@image['id'] || ""
 	end
 
 	def image_object
