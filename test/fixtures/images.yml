@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image_id: MyString
+  filename: MyString
+  width: MyString
+  height: MyString
+  small_link: MyString
+  medium_link: MyString
+  large_link: MyString
+
+two:
+  image_id: MyString
+  filename: MyString
+  width: MyString
+  height: MyString
+  small_link: MyString
+  medium_link: MyString
+  large_link: MyString

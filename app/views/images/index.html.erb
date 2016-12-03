@@ -1,0 +1,20 @@
+<div class="index-page">
+
+	<div class="images-container">
+		<% @data['images'].each do |image| %>
+
+			<div class="image-container">
+				<div class="image">
+				<img src="<%= image['medium_url'] %>">
+			</div>
+			<div class="bottom-container">
+				<a class="make" href="/make?q=<%= image['make'] %>" >Make: <%= image['make'] %></a>
+				<a class="model" href="/model?q=<%= image['model'] %>" >Model: <%= image['model'] %></a>
+			</div>
+			</div>						
+		<% end %>
+
+	</div>
+	
+</div>
+
