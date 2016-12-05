@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
 
-	require 'net/http'
-	require 'json'	
+	# require 'net/http'
+	# require 'json'	
 
 	def index
 		@data = ImageService.new().get_images_data

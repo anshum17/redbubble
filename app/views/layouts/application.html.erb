@@ -20,42 +20,26 @@
           <i class="fa fa-home"></i>
           <a href="/" >HOME</a>
         </div>
-
-        <!-- <div class="dropdown" style="position:relative">
-          <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">MAKE <span class="caret"></span></a>
-          <ul class="dropdown-menu multi-level">
-            <% @data['makes'].keys().each do |key| %>        
-            <li class="dropdown-submenu">
-                <a href="/make?q=<%= key %>" class="dropdown-toggle <%= (key) ? '' : 'hidden' %>"><%= key %></a>
-                <ul class="dropdown-menu">
-                  <% @data['makes'][key]['models'].each do |model| %>
-                    <li>
-                      <a href="/model?q=<%= model %>" class="<%= (model) ? '' : 'hidden' %>"><%= model %></a>
-                    </li> 
-                    <% end %>                               
-                </ul>
-            </li>
-            <% end %>
-          </ul>
-        </div> -->
+        
       </div>  		
   	</header>
     <div class="container">
 
-    <div class="navigation">
-      <% @data['makes'].keys().each do |key| %>        
-            <div class="list <%= (key) ? '' : 'hidden' %>">
-                <a href="/make?q=<%= key %>" class="camera-make"><%= key %></a>
-                <ul class="list-dropdown">
-                  <% @data['makes'][key]['models'].each do |model| %>
-                    <li>
-                      <a href="/model?q=<%= model %>" class="<%= (model) ? '' : 'hidden' %>"><%= model %></a>
-                    </li> 
-                    <% end %>                               
-                </ul>
-            </div>
-        <% end%>
-    </div>
+      <div class="navigation">
+        <% @data['makes'].keys().each do |key| %>        
+              <div class="list <%= (key) ? '' : 'hidden' %>">
+                  <a href="/make?q=<%= key %>" class="camera-make"><%= key %></a>
+                  <ul class="list-dropdown">
+                    <% @data['makes'][key]['models'].each do |model| %>
+                      <li>
+                        <a href="/model?q=<%= model %>" class="<%= (model) ? '' : 'hidden' %>"><%= model %></a>
+                      </li> 
+                      <% end %>                               
+                  </ul>
+              </div>
+          <% end%>
+      </div>
+
       
       <%= yield %>
       

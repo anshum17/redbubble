@@ -1,81 +1,53 @@
 class ImageService
 
 	def initialize
-		@data = JSON.parse(File.read('works.json'))['works']['work']
-	end
-
-	def get_images_data				
 		# uri = URI('http://take-home-test.herokuapp.com/api/v1/works.json')
 		# response = Net::HTTP.get_response(uri)
 		# payload = response.code == "200" ? JSON.parse(response.body) : response.message
-		to_hash(@data)
+		@data = JSON.parse(File.read('works.json'))['works']['work']
+	end
+
+	def get_images_data						
+		{
+			'images' => images_array('none').compact.take(10),
+			'makes' => makes_dropdown
+		}
 	end
 
 	def models_hash(id)
-		# models = {}
-		makes = {}
-		images = []
-		@data.each do |obj|
-			@image = obj
-			image_id = obj['id']
-			model = _model
-			make = _make
-			images = (model == id) ? images + [image_object] : images
-			makes[make] = makes[make] ?  { 'models' => makes[make]['models'] | [model]} : { 'models' => [model] }
-			# makes[make] = makes[make] ?  { 'image_ids' => makes[make]['image_ids'] | [image_id], 'models' => makes[make]['models'] | [model]} : { 'image_ids' => [image_id], 'models' => [model]}
-		end
 		{
-			'makes' 				=> makes,
-			'images'				=> images.take(10),
+			'makes' 				=> makes_dropdown,
+			'images'				=> images_array('model', id).compact.take(10),
 			'selected_model' => id
 		}
 	end
 
 	def makes_hash(id)
-		makes = {}
-		images = []
-		@data.each do |obj|
-			@image = obj
-			image_id = obj['id']
-			model = _model
-			make = _make
-			images = (make == id) ? images + [image_object] : images
-			makes[make] = makes[make] ?  { 'image_ids' => makes[make]['image_ids'] | [image_id], 'models' => makes[make]['models'] | [model]} : { 'image_ids' => [image_id], 'models' => [model]}
-		end
 		{
-			'makes' 				=> makes,
-			'images'				=> images.take(10),
+			'makes' 				=> makes_dropdown,
+			'images'				=> images_array('make', id).compact.take(10),
 			'selected_make' => id
 		}
 	end
 
-	def images_array
-		images = []
-		@data.each do |image|
+	def images_array(condition, value = nil)
+		@data.collect do |image| 
 			@image = image
-			images += [image_object]
+			if (condition == 'make' and _make == value) || (condition == 'model' and _model == value) || (condition == 'none')
+				image_object
+			end
 		end
-		images
 	end
 
-	def to_hash(arr)
-		images = []
-		models = {}
+	def makes_dropdown
 		makes = {}
-		arr.each do |image|
+		@data.each do |image|
 			@image = image
-			id = image['id']
 			model = _model
 			make = _make
-			images = images + [image_object]
-			models[model] = { 'image_ids' => models[model] ? models[model]['image_ids'] | [id] : [id], 'make' => make}
-			makes[make] = makes[make] ?  { 'image_ids' => makes[make]['image_ids'] | [id], 'models' => makes[make]['models'] | [model]} : { 'image_ids' => [id], 'models' => [model]}
+			makes[make] = makes[make] ?  {'models' => makes[make]['models'] | [model]} : { 'models' => [model]}
 		end
-		{
-			'images' => images.take(10),
-			'models'=> models,
-			'makes' => makes
-		}
+		makes
 	end
 
 private
@@ -120,5 +92,23 @@ private
 
 		}
 	end
+
+
+
+	# def to_hash(arr)
+	# 	images = []
+	# 	makes = {}
+	# 	arr.each do |image|
+	# 		@image = image
+	# 		model = _model
+	# 		make = _make
+	# 		images = images + [image_object]
+	# 		makes[make] = makes[make] ?  {'models' => makes[make]['models'] | [model]} : { 'models' => [model]}
+	# 	end
+	# 	{
+	# 		'images' => images.take(10),
+	# 		'makes' => makes
+	# 	}
+	# end
 
 end
