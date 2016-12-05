@@ -7,6 +7,7 @@ class ImageService
 		@data = JSON.parse(File.read('works.json'))['works']['work']
 	end
 
+	# returns all images array and makes/model hash for dropdown
 	def get_images_data						
 		{
 			'images' => images_array('none').compact.take(10),
@@ -14,6 +15,7 @@ class ImageService
 		}
 	end
 
+	# returns all images array with 'id' model and makes/model hash for dropdown
 	def models_hash(id)
 		{
 			'makes' 				=> makes_dropdown,
@@ -22,6 +24,7 @@ class ImageService
 		}
 	end
 
+	# returns all images array with 'id' make and makes/model hash for dropdown
 	def makes_hash(id)
 		{
 			'makes' 				=> makes_dropdown,
@@ -30,6 +33,10 @@ class ImageService
 		}
 	end
 
+	##
+	# returns images array from @data
+	# conditional check: either of given model or given make or all
+	##
 	def images_array(condition, value = nil)
 		@data.collect do |image| 
 			@image = image
@@ -39,6 +46,7 @@ class ImageService
 		end
 	end
 
+	# returns make/model dropdown from @data object
 	def makes_dropdown
 		makes = {}
 		@data.each do |image|
