@@ -9,34 +9,34 @@ Setup(Locally on Mac OS) // For Ubuntu, follow this article: http://railsapps.gi
 
 Prerequisites: rvm, ruby, rails, xcode
 
-Xcode:
-	xcode-select --install
+**Xcode:**
+	`xcode-select --install`
 
-Homebrew:
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+**Homebrew:**
+	`ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-Install rvm:
-	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-	\curl -sSL https://get.rvm.io | bash -s stable
+**Install rvm:**
+	`gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+	\curl -sSL https://get.rvm.io | bash -s stable`
 
-Upgrade to Ruby 2.3.1:
-	rvm install ruby-2.3.1
+**Upgrade to Ruby 2.3.1:**
+	`rvm install ruby-2.3.1
 	rvm --default use ruby-2.3.1
-	source ~/.rvm/scripts/rvm
+	source ~/.rvm/scripts/rvm`
 
-Rails 5:
-	rvm use ruby-2.3.1@rails5.0 --create
-	gem install rails
-
-
-* How to run the test suite
-	run command 'rspec' on terminal
-
-* How to start rails server
-	run command 'rails s' on terminal
+**Rails 5:**
+	`rvm use ruby-2.3.1@rails5.0 --create
+	gem install rails`
 
 
-DOCUMENTATION:
+** How to run the test suite:**
+	`run command 'rspec' on terminal`
+
+** How to start rails server:**
+	`run command 'rails s' on terminal`
+
+
+#####DOCUMENTATION:
 1. Services:
 	a. The application business logic should reside here
 	b. Should follow single responsibility principle
