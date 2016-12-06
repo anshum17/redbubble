@@ -22,10 +22,11 @@
  	h1 {
 		font-size: 20px;
 /*    	text-transform: uppercase;
-*/    	position: relative;
+*/    position: relative;
     	font-weight: 300px;
-    	color: black;
+    	color: dimgrey;
     	margin-bottom: 40px;
+
 
     	&:before{
     		content: '';
@@ -71,11 +72,15 @@ header {
 .index-page {
 	.image-container {
 		display: inline-block;
+		padding-bottom: 20px;
+    	padding-right: 10px;
 	}
 	.image {
 		display: inline-block;
 	    border: 10px solid #f0f0f0;
 	    border-radius: 4px;
+	    width: 300px;
+	    height: 185px;
 	}
 	a {
 	    padding: 10px;
@@ -161,10 +166,10 @@ header {
 }
 
 
-img {
+.image {
     transition: -webkit-transform 0.25s ease;
 }
 
-img:hover {
+.image:hover {
     -webkit-transform: scale(1.1);
 }

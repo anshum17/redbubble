@@ -8,7 +8,7 @@ There are 3 controller actions each for index(main) page, camera make page and c
 [![Code Climate](https://codeclimate.com/repos/584453c0a393ef79330033d2/badges/44bc589903bd43316aa5/gpa.svg)](https://codeclimate.com/repos/584453c0a393ef79330033d2/feed)
 
 
-**Setup(Locally on Mac OS)** // For Ubuntu, follow this [article](http://railsapps.github.io/install-ruby.html)
+*Setup(Locally on Mac OS) // For Ubuntu, follow this [article](http://railsapps.github.io/install-ruby.html)
 
 **Prerequisites:** rvm, ruby, rails, xcode
 
@@ -20,13 +20,13 @@ There are 3 controller actions each for index(main) page, camera make page and c
 
 **Install rvm:**
 	
-`gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-\curl -sSL https://get.rvm.io | bash -s stable`
+```gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+\curl -sSL https://get.rvm.io | bash -s stable```
 
 **Upgrade to Ruby 2.3.1:**
-`rvm install ruby-2.3.1
+```rvm install ruby-2.3.1
 rvm --default use ruby-2.3.1
-source ~/.rvm/scripts/rvm`
+source ~/.rvm/scripts/rvm```
 
 **Rails 5:**
 `rvm use ruby-2.3.1@rails5.0 --create

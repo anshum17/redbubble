@@ -1,18 +1,20 @@
-<h1>Camera Model: <%= @data['selected_model'] %></h1>
-
-<div class="index-page">
-	<div class="images-container">
-		<% @data['images'].each do |image| %>
-			<div class="image-container">
-				<div class="image">
-				<img src="<%= image['medium_url'] %>">
-			</div>
-			<div class="bottom-container">
-				<a class="make" href="/make?q=<%= image['make'] %>" >Make: <%= image['make'] %></a>
-				<a class="model" href="/model?q=<%= image['model'] %>" >Model: <%= image['model'] %></a>
-			</div>
-			</div>			
-		<% end %>
+<% if @data[:payload]['images'].length != 0 %>
+	<h1>Camera Model: <%= @data[:payload]['selected_key'] %></h1>
+	<div class="index-page">
+		<div class="images-container">
+			<% @data[:payload]['images'].each do |image| %>
+				<div class="image-container">
+					<div class="image" style="background-image:url(<%= image['medium_url'] %>)"">
+					<!-- <img src="<%= image['medium_url'] %>"> -->
+				</div>
+				<div class="bottom-container">
+					<a class="make" href="/make?q=<%= image['make'] %>" >Make: <%= image['make'] %></a>
+					<a class="model" href="/model?q=<%= image['model'] %>" >Model: <%= image['model'] %></a>
+				</div>
+				</div>			
+			<% end %>
+		</div>
 	</div>
-</div>
-
+<% else %>
+	<h1><%=  "No images found with '#{@data[:payload]['selected_key']}'"%></h1>
+<%end %>	

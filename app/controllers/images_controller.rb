@@ -27,7 +27,6 @@ class ImagesController < ApplicationController
 	#   ```
 	def index
 		@data = ImageService.new().get_images_data
-		# render json:  @data, status: 200
 	end
 
 	# @url /make
@@ -53,8 +52,10 @@ class ImagesController < ApplicationController
 	#   }
 	#   ```
 	def make
-		@data = ImageService.new().makes_hash(params[:q])
-		# render json:  @data, status: 200
+		if !check_params ['q']
+			render :file => 'public/400.html', :status => :bad_request, :layout => false
+		end 
+		@data = ImageService.new().get_hash('make', params[:q])
 	end
 
 	# @url /model
@@ -80,7 +81,9 @@ class ImagesController < ApplicationController
 	#   }
 	#   ```
 	def model
-		@data = ImageService.new().models_hash(params[:q])
-		# render json:  @data, status: 200
+		if !check_params ['q']
+			render :file => 'public/400.html', :status => :bad_request, :layout => false
+		end 
+		@data = ImageService.new().get_hash('model', params[:q])
 	end
 end

@@ -24,25 +24,21 @@
       </div>  		
   	</header>
     <div class="container">
-
       <div class="navigation">
-        <% @data['makes'].keys().each do |key| %>        
-              <div class="list <%= (key) ? '' : 'hidden' %>">
-                  <a href="/make?q=<%= key %>" class="camera-make"><%= key %></a>
-                  <ul class="list-dropdown">
-                    <% @data['makes'][key]['models'].each do |model| %>
-                      <li>
-                        <a href="/model?q=<%= model %>" class="<%= (model) ? '' : 'hidden' %>"><%= model %></a>
-                      </li> 
-                      <% end %>                               
-                  </ul>
-              </div>
-          <% end%>
+        <% @data[:payload]['makes'].keys().each do |key| %>        
+          <div class="list <%= (key) ? '' : 'hidden' %>">
+              <a href="/make?q=<%= key %>" class="camera-make"><%= key %></a>
+              <ul class="list-dropdown">
+                <% @data[:payload]['makes'][key]['models'].each do |model| %>
+                  <li>
+                    <a href="/model?q=<%= model %>" class="<%= (model) ? '' : 'hidden' %>"><%= model %></a>
+                  </li> 
+                  <% end %>                               
+              </ul>
+          </div>
+        <% end%>
       </div>
-
-      
-      <%= yield %>
-      
+      <%= yield %>      
     </div>
   </body>
 </html>

@@ -1,36 +1,20 @@
 class ImageService
 
 	def initialize
-		# uri = URI('http://take-home-test.herokuapp.com/api/v1/works.json')
-		# response = Net::HTTP.get_response(uri)
-		# payload = response.code == "200" ? JSON.parse(response.body) : response.message
-		@data = JSON.parse(File.read('works.json'))['works']['work']
+		uri = URI(ENV['api_url'])
+		response = Net::HTTP.get_response(uri)
+		@data = response.code == "200" ? JSON.parse(response.body)['works']['work'] : response.message
+		# @data = JSON.parse(File.read('works.json'))['works']['work']
 	end
 
 	# returns all images array and makes/model hash for dropdown
 	def get_images_data						
-		{
-			'images' => images_array('none').compact.take(10),
-			'makes' => makes_dropdown
-		}
+		{ payload: { 'makes' => makes_dropdown, 'images' => images_array('none').compact}, success: true}
 	end
 
-	# returns all images array with 'id' model and makes/model hash for dropdown
-	def models_hash(id)
-		{
-			'makes' 				=> makes_dropdown,
-			'images'				=> images_array('model', id).compact.take(10),
-			'selected_model' => id
-		}
-	end
-
-	# returns all images array with 'id' make and makes/model hash for dropdown
-	def makes_hash(id)
-		{
-			'makes' 				=> makes_dropdown,
-			'images'				=> images_array('make', id).compact.take(10),
-			'selected_make' => id
-		}
+	# returns all images array with 'id' model or make and makes/model hash for dropdown
+	def get_hash(key, id)		
+		{ payload: { 'makes' => makes_dropdown, 'images' => images_array(key, id).compact.take(10), 'selected_key' => id}, success: true}
 	end
 
 	##
@@ -100,23 +84,5 @@ private
 
 		}
 	end
-
-
-
-	# def to_hash(arr)
-	# 	images = []
-	# 	makes = {}
-	# 	arr.each do |image|
-	# 		@image = image
-	# 		model = _model
-	# 		make = _make
-	# 		images = images + [image_object]
-	# 		makes[make] = makes[make] ?  {'models' => makes[make]['models'] | [model]} : { 'models' => [model]}
-	# 	end
-	# 	{
-	# 		'images' => images.take(10),
-	# 		'makes' => makes
-	# 	}
-	# end
 
 end
