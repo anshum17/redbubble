@@ -48,7 +48,8 @@ class ImagesController < ApplicationController
 	#   ```
 	#   {
 	#     'images' => [],
-	#	  'makes' => {}
+	#	  'makes' => {},
+	#     'selected_key' => 'make'   
 	#   }
 	#   ```
 	def make
@@ -77,7 +78,8 @@ class ImagesController < ApplicationController
 	#   ```
 	#   {
 	#     'images' => [],
-	#	  'makes' => {}
+	#	  'makes' => {},
+	#     'selected_key' => 'make'
 	#   }
 	#   ```
 	def model

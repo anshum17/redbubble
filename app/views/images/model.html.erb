@@ -5,7 +5,6 @@
 			<% @data[:payload]['images'].each do |image| %>
 				<div class="image-container">
 					<div class="image" style="background-image:url(<%= image['medium_url'] %>)"">
-					<!-- <img src="<%= image['medium_url'] %>"> -->
 				</div>
 				<div class="bottom-container">
 					<a class="make" href="/make?q=<%= image['make'] %>" >Make: <%= image['make'] %></a>

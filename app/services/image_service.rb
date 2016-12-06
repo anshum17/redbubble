@@ -4,7 +4,6 @@ class ImageService
 		uri = URI(ENV['api_url'])
 		response = Net::HTTP.get_response(uri)
 		@data = response.code == "200" ? JSON.parse(response.body)['works']['work'] : response.message
-		# @data = JSON.parse(File.read('works.json'))['works']['work']
 	end
 
 	# returns all images array and makes/model hash for dropdown

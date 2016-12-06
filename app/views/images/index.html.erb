@@ -4,7 +4,6 @@
 		<% @data[:payload]['images'].each do |image| %>
 			<div class="image-container">
 				<div class="image" style="background-image:url(<%= image['medium_url'] %>)">
-				<!-- <img src="<%= image['medium_url'] %>"> -->
 			</div>
 			<div class="bottom-container">
 				<% if (image['make']) %>
